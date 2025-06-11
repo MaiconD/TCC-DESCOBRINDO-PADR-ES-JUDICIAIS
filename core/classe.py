@@ -21,14 +21,18 @@ def processar_classe():
     df_pai_nome = df_pai_nome[['cod_item', 'nome']].drop_duplicates().reset_index(drop=True)
     df_pai_nome_renamed = df_pai_nome.rename(columns={
         'cod_item': 'cod_item_pai',
-        'nome': 'nome_pai'
+        'nome': 'classe_pai'
     })
 
     # Merge no DataFrame principal com os nomes dos pais
     df_classes = df_classes.merge(df_pai_nome_renamed, on='cod_item_pai', how='left')
 
+    df_classes.drop(columns=['breadscrum'], inplace=True)
+
     df_classes = df_classes.rename(columns={
-        'cod_item': 'dadosBasicos.classeProcessual'
+        'cod_item': 'dadosBasicos.classeProcessual',
+        'cod_item_pai': 'cod_classe_item_pai',
+        'nome': 'classe'
     })
 
 

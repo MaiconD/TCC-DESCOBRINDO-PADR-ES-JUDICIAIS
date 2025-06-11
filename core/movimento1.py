@@ -21,14 +21,18 @@ def processar_movimento():
     df_pai_nome = df_pai_nome[['cod_item', 'nome']].drop_duplicates().reset_index(drop=True)
     df_pai_nome_renamed = df_pai_nome.rename(columns={
         'cod_item': 'cod_item_pai',
-        'nome': 'nome_pai'
+        'nome': 'movimento_pai'
     })
 
     # Merge no DataFrame principal com os nomes dos pais
     df_movimentos = df_movimentos.merge(df_pai_nome_renamed, on='cod_item_pai', how='left')
 
+    df_movimentos.drop(columns=['breadscrum'], inplace=True)
+
     df_movimentos = df_movimentos.rename(columns={
         'cod_item':'codigoMovimento',
+        'cod_item_pai': 'cod_movimento_item_pai',
+        'nome': 'movimento'
     })
 
     # Salvar CSV formatado

@@ -154,4 +154,6 @@ def processar_processo(pasta):
     # Extração do assunto principal
     df_explodido['assuntoPrincipal'] = df_explodido['dadosBasicos.assunto'].apply(extrair_assunto_principal)
 
+    df_explodido.drop(columns=['movimento', 'millisInsercao', 'dadosBasicos.assunto'], inplace=True)
+
     return df_explodido

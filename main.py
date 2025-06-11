@@ -31,6 +31,8 @@ def main():
 
         print(df_processo)
 
+
+
         # Salva o CSV na própria subpasta
         nome_csv = f"{subpasta}.csv"
         caminho_csv_saida = os.path.join(arquivo_csv, nome_csv)
